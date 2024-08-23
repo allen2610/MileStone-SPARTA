@@ -14,15 +14,25 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  name    String?
-  profile Profile?
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  email       String  @unique
+  password    String
+  bio         String  @default("No bio")
+  name        String 
+  dateOfBirth DateTime 
+  gender      Int
 }
 
-model Profile {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  bio    String
-  user   User   @relation(fields: [userId], references: [id])
-  userId String    @unique @db.ObjectId
+model Journal {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime  @default(now())
+  content   String?
+  userId    String 
+}
+
+model Moods {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  mood Int
+  userId  String
 }
