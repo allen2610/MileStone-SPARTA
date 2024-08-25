@@ -9,8 +9,11 @@ const JournalForm = () => {
         redirect("/");
       }}
     >
-        <textarea name="journal" rows="4" className="resize" /> <br />
-        <button type="submit" className="bg-blue-100">Submit</button>
+      <div className="flex flex-col items-center">
+        <textarea name="journal" rows="20" className="resize w-full" /> <br/>
+        <button type="submit" className="bg-green-400 p-2 px-4 rounded-3xl text-white w-[100px] flex items-center justify-center font-bold ">Submit</button>
+      </div>
+
     </form>
   )
 }
