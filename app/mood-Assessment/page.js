@@ -12,7 +12,7 @@ import Maskot from '@/public/maskot.svg'
 
 const page = () => {
   return (
-    <div className="bg-white opacity- w-full h-full rounded-xl m-3 p-[60px]">
+    <div className="bg-white/50 w-full h-full rounded-xl m-3 p-[60px]">
       <Link href="/profile" className=' w-screen '>
         <Image 
         src={PP}
@@ -20,8 +20,8 @@ const page = () => {
         width={50}
         className='absolute right-[60px] top-10'
         />
-        <h1 className='text-5xl font-extrabold '>Mood Echoers selama sebulan</h1>
       </Link>
+      <h1 className='text-5xl font-extrabold '>Mood Echoers selama sebulan</h1>
       <button className='bg-[#D2EBF0] rounded-3xl px-5 py-1 absolute right-20 '>▼ Juli 2024 </button>
       <div className='flex items-start justify-center mt-10'>
         <div>
