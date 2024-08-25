@@ -39,7 +39,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'> Journalling </div>
       </Link>
-      <Link href="/Mood-Assessment" className='flex items-center p-2'>
+      <Link href="/mood-Assessment" className='flex items-center p-2'>
         <Image
           src={Mood}
           alt="Image"
