@@ -40,7 +40,7 @@ const page = () => {
               width={50}
             />
           </div>
-          <div className='bg-pink-200 h-[60px] w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>
+          <div className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>
             <Image
               src={Marah}
               alt="mood"
