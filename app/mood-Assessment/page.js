@@ -9,8 +9,9 @@ const MoodAssessment = async ({ searchParams }) => {
   if(!session){
       redirect("/")
   }
-  const currentMonth = Number(searchParams['month']) || '8';
-  const currentYear = Number(searchParams['year']) || '2024 ';
+  const currentDate = new Date();
+  const currentMonth = Number(searchParams['month']) || currentDate.getMonth() + 1;
+  const currentYear = Number(searchParams['year']) || currentDate.getYear() + 1900;
   
   const startOfMonth =  new Date(currentYear, currentMonth - 1, 1);
   const endOfMonth =  new Date(currentYear, currentMonth, 0, 23, 59, 59, 999);
@@ -28,7 +29,9 @@ const MoodAssessment = async ({ searchParams }) => {
       <div>
           <ul>
               {moods.map((entry) => (
-                  <li key={entry.id}>{entry.mood}</li>
+                  <li key={entry.id}>
+                    {entry.createdAt.getDay()} {entry.mood}
+                  </li>
               ))}
           </ul>
           <DropdownButton></DropdownButton>

@@ -3,6 +3,7 @@ import prisma from '@/lib/db';
 import { redirect } from 'next/navigation'
 import React from 'react'
 import PaginationControls from '@/components/PaginationControls';
+import { format } from 'date-fns'
 
 const JournalReview = async ({ searchParams }) => {
     const session = await getSession();
@@ -10,7 +11,7 @@ const JournalReview = async ({ searchParams }) => {
         redirect("/")
     }
     const currentCount = parseInt(searchParams['page']) || '0';
-    const entryPerPage = 5;
+    const entryPerPage = 14;
     const totalUserEntry = await prisma.journal.count({
         where: {
           userId: session.user.id
@@ -29,12 +30,15 @@ const JournalReview = async ({ searchParams }) => {
         <div>
             <ul>
                 {entries.map((entry) => (
-                    <li key={entry.id}>{entry.content.slice(0, 20)}</li>
+                    <li key={entry.id}>
+                        {format(new Date(entry.createdAt), 'dd-MM-yy') }
+                        {entry.content.slice(0, 20)}
+                    </li>
                 ))}
             </ul>
             <PaginationControls
                 hasPrevPage = {currentCount > 0}
-                hasNextPage = {currentCount*5 < totalUserEntry}
+                hasNextPage = {currentCount*entryPerPage < totalUserEntry}
             />
         </div>
     )
