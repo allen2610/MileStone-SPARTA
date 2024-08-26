@@ -15,7 +15,6 @@ const MoodAssessment = async ({ searchParams }) => {
   
   const startOfMonth =  new Date(currentYear, currentMonth - 1, 1);
   const endOfMonth =  new Date(currentYear, currentMonth, 0, 23, 59, 59, 999);
-  // console.log(startOfMonth, endOfMonth)
   const moods = await prisma.moods.findMany({
     where: {
       createdAt: {
@@ -23,16 +22,77 @@ const MoodAssessment = async ({ searchParams }) => {
         lt: endOfMonth,
       },
     },
+    orderBy:{
+      createdAt: 'desc',
+    }
   });
 
+  const moodsByWeek = [
+    {
+      id: 1, 
+      moods: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 2, 
+      moods: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 3, 
+      moods: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 4, 
+      moods: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 5, 
+      moods: [null, null, null, null, null, null, null] 
+    },
+  ]
+  let weeklyMood = [null, null, null, null, null, null, null] ;
+  moods.forEach((mood, index, array) => {
+    const date = new Date(mood.createdAt);
+    const weekday = date.getDay();
+    weeklyMood[weekday] = mood.mood;
+    if (date.getDay() == 0 || index === array.length - 1){
+      const weekToUpdate = moodsByWeek.find((week) => week.id === 1 + (date.getDate()/7|0));
+      // If the object exists, update its moods array
+      if (weekToUpdate) {
+        weekToUpdate.moods = weeklyMood;
+        weeklyMood = [null, null, null, null, null, null, null];
+      }
+    }
+  })
   return (
-      <div>
+      <div className="bg-white/50 w-full h-full rounded-xl m-3 p-[60px] flex justify-around">
+        <table>
+        <thead>
+          <tr className='flex justify-between'>
+            <th>Senin</th>
+            <th>Selasa</th>
+            <th>Rabu</th>
+            <th>Kamis</th>
+            <th>Jumat</th>
+            <th>Sabtu</th>
+            <th>Minggu</th>
+          </tr>
+        </thead>
+        <tbody>
+          {moodsByWeek.map((entry) => (
+            <tr key={entry.id} className='flex'>
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[1] ? entry.moods[1] : " "}</td>
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[2] ? entry.moods[2] : " "}</td>
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[3] ? entry.moods[3] : " "}</td> 
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[4] ? entry.moods[4] : " "}</td>
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[5] ? entry.moods[5] : " "}</td>
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[6] ? entry.moods[6] : " "}</td>
+              <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[0] ? entry.moods[0] : " "}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
           <ul>
-              {moods.map((entry) => (
-                  <li key={entry.id}>
-                    {entry.createdAt.getDay()} {entry.mood}
-                  </li>
-              ))}
+              
           </ul>
           <DropdownButton></DropdownButton>
       </div>
