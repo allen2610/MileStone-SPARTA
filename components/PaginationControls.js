@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter, useSearchParams, usePathName } from 'next/navigation'
+import { useRouter, useSearchParams} from 'next/navigation'
 
 const PaginationControls = (
   {
@@ -12,8 +12,6 @@ const PaginationControls = (
   const searchParams = useSearchParams()
 
   const page = searchParams.get('page') ?? '0'
-  const per_page = 5
-
   return (
     <div className='flex gap-2'>
       <button
@@ -26,7 +24,7 @@ const PaginationControls = (
       </button>
 
       <div>
-        {page}
+        {Number(page)+1}
       </div>
 
       <button
