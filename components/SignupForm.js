@@ -1,26 +1,87 @@
 "use client";
+import React from "react";
 import { redirect } from "next/navigation";
-import { createUser } from "@/actions/actions"
+import { createUser } from "@/actions/actions";
 
 const Signup = () => {
   return (
-    <form id="signup" action={async (formData) => {
-        await createUser(formData);
-        redirect("/");
-      }}
-    >
-        <input type="email" name="email" placeholder="E-mail" required /> <br />
-        <input type="password" name="password" placeholder="Password" required /> <br />
-        <input type="text" name="name" placeholder="Name" required /> <br />
-        <label> Date of Birth </label> <br />
-        <input type="date" name="dateOfBirth" required /> <br />
-        <input type="radio" id="html" name="gender" value="1" required />
-        <label >Male</label><br />
-        <input type="radio" id="css" name="gender" value="0" required />
-        <label >Female</label><br />
-        <button type="submit" className="bg-blue-100">Sign Up</button>
-    </form>
-  )
-}
+    <div className="flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-[800px] max-w-md p-4">
+        <form
+          className="flex flex-col bg-white rounded-3xl p-8 shadow-lg w-full"
+          id="signup"
+          action={async (formData) => {
+            await createUser(formData);
+            redirect("/");
+          }}
+        > 
+          <p className="font-bold text-xl text-center mb-[0.5vw]">Create Your Account!</p>
+          <label className="block mb-2">Nama</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            className="mb-4 p-2 border rounded"
+          />
+          <label className="block mb-2">Tanggal Lahir</label>
+          <input
+            type="date"
+            name="dateOfBirth"
+            required
+            className="mb-4 p-2 border rounded"
+          />
+          <label className="block mb-2">Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            required
+            className="mb-4 p-2 border rounded"
+          />
+          <label className="block mb-2">Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            className="mb-4 p-2 border rounded"
+          />
+          <div className="flex flex-row mb-4 justify-between
+          ">
+            <div className="bg-[#FEE7F4] hover:bg-[#ff9ad5] p-[1vw] rounded-md">
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="0"
+                required
+                className="mr-2"
+              />
+              <label htmlFor="female">Female</label>
+            </div>
+            <div className="bg-[#CDFAF7] hover:bg-[#76fff6] p-[1vw] rounded-md">
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="1"
+                required
+                className="mr-2"
+              />
+              <label htmlFor="male" className="mr-4">Male</label>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="bg-[#BAFFD4] p-2 rounded hover:bg-[#87ffb5]"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default Signup
+export default Signup;

@@ -23,7 +23,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'> Home </div>
       </Link>
-      <Link href="/meditation" className='flex items-center p-2'>
+      <Link href="/Meditation" className='flex items-center p-2'>
         <Image
           src={Meditation}
           alt="Image"
@@ -31,7 +31,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'>  Meditation </div>
       </Link>
-      <Link href="/journalling" className='flex items-center p-2'>
+      <Link href="/Journalling" className='flex items-center p-2'>
         <Image
           src={Journal}
           alt="Image"
