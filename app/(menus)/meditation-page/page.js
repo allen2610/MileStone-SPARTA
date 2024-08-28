@@ -24,7 +24,7 @@ export default function Meditation () {
           /**
            * TODO: Bikin link buat masing masing video sama benerin linknya
           */
-          <Link href='/Meditation' className='flex flex-col justify-between rounded-3xl m-5 p-2 items-center' style={{backgroundColor: topic.color}}>
+          <Link href='/meditation-page' className='flex flex-col justify-between rounded-3xl m-5 p-2 items-center' style={{backgroundColor: topic.color}}>
             <Image
               src={ topic.source }
               alt={ topic.name }

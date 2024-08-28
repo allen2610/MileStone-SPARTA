@@ -12,7 +12,7 @@ import Bubble from '@/public/text-bubble.svg'
 const page = () => {
   return (
     <div className="bg-white/50 opacity- w-full rounded-xl m-3 p-[60px]">
-      <Link href="/profile" className=' w-screen '>
+      <Link href="/profile-page" className=' w-screen '>
         <Image 
         src={PP}
         alt="Image"

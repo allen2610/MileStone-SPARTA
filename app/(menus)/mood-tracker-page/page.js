@@ -104,7 +104,7 @@ const MoodAssessment = async ({ searchParams }) => {
   const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
   return (
     <div className='bg-white/50 w-full h-full rounded-xl m-3 p-[60px] '>
-      <Link href="/profile" className=' w-screen '>
+      <Link href="/profile-page" className=' w-screen '>
         <Image 
         src={PP}
         alt="Image"
