@@ -14,7 +14,7 @@ const page = async () => {
   if (!session){
       redirect("/");
   }
-  const user = session;
+  const user = session.user;
   const dob = new Date(user.dateOfBirth);
   const formattedDate = dob.toLocaleDateString('en-GB')
   return (
