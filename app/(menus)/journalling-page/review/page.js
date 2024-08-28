@@ -38,7 +38,7 @@ const JournalReview = async ({ searchParams }) => {
             </ul>
             <PaginationControls
                 hasPrevPage = {currentCount > 0}
-                hasNextPage = {currentCount*entryPerPage < totalUserEntry}
+                hasNextPage = {(currentCount+1)*entryPerPage < totalUserEntry}
             />
         </div>
     )

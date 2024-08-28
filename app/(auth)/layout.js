@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({ children }) {
   return (
+    <>
         <div className="relative ">
           <div className="w-full h-screen flex justify-between">
             <Image
@@ -16,5 +17,6 @@ export default function Layout({ children }) {
             {children}
           </div>
         </div>
+    </>
   )
 }

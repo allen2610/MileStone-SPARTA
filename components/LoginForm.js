@@ -10,7 +10,7 @@ const Login = () => {
   return (
     <form id="login" action={async (formData) => {
         await login(formData);
-        redirect("/");
+        redirect("/home-login-page");
       }}
     >
       <div className="bg-[#D9D9D9] px-3 py-1 flex rounded-3xl m-2">

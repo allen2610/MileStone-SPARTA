@@ -17,7 +17,10 @@ const page = () => {
       </Link>
       <h1 className='text-5xl font-extrabold '>Hai, Andi!</h1>
       <h2 className='text-3xl m-2 font-bold mb-5 mt-5'>Apa yang kamu mau ceritakan hari ini?</h2>
-      <JournalForm/>
+      <JournalForm />
+      <Link href="/journalling-page/review" className='flex justify-center mt-3'>
+        <button className='bg-red-400 p-2 px-4 rounded-3xl text-white w-[100px] flex items-center justify-center font-bold '>Review</button>
+      </Link>
     </div>
   )
 }

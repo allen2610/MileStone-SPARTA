@@ -11,21 +11,15 @@ export const metadata = {
   description: "A self-tracking mood assessment website.",
 };
 
-export default function RootLayout({ children }) {
+export default function MenuLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="relative ">
-          <div className="w-full h-full flex justify-between">
-            <Image
-              src={Background}
-              className="absolute top-0 left-0 w-full h-full -z-20 object-cover"
-              alt="background"/>
-            <Navbar/> 
-           {children}
-          </div>
+        <div className="w-full h-full flex justify-between">
+          <Image
+            src={Background}
+            className="absolute top-0 left-0 w-full h-full -z-20 object-cover"
+            alt="background"/>
+          <Navbar/> 
+          {children}
         </div>
-      </body>
-    </html>
   );
 }

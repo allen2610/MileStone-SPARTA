@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Logo from '@/public/Logo.svg'
+import Logo from '@/public/logo1.svg'
 import Home from '@/public/home.svg'
 import Mood from '@/public/mood.svg'
 import Meditation from '@/public/meditation.svg'
@@ -15,7 +15,7 @@ const Navbar = () => {
         width={200}
         alt="Image"
       />
-      <Link href="/" className='flex items-center p-2'>
+      <Link href="/home-login-page" className='flex items-center p-2'>
         <Image
           src={Home}
           alt="Image"
@@ -31,7 +31,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'>  Meditation </div>
       </Link>
-      <Link href="/journalling" className='flex items-center p-2'>
+      <Link href="/journalling-page" className='flex items-center p-2'>
         <Image
           src={Journal}
           alt="Image"
