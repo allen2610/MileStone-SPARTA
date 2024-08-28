@@ -18,7 +18,7 @@ const PaginationControls = (
         className='bg-blue-500 text-white p-1'
         disabled={!hasPrevPage}
         onClick={() => {
-            router.push(`/Journalling/review?page=${Number(page) - 1}`)
+            router.push(`/journalling-page/review?page=${Number(page) - 1}`)
         }}>
         prev page
       </button>
@@ -31,7 +31,7 @@ const PaginationControls = (
         className='bg-blue-500 text-white p-1'
         disabled={!hasNextPage}
         onClick={() => {
-            router.push(`/Journalling/review?page=${Number(page) + 1}`)  
+            router.push(`/journalling-page/review?page=${Number(page) + 1}`)  
         }}>
         next page
       </button>

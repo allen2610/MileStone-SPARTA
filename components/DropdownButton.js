@@ -24,7 +24,7 @@ const DropdownButton = () => {
                 <button
                 className='p-1'
                 onClick={() => {
-                    router.push(`/mood-Assessment?month=${entry}&year=${2024}`)
+                    router.push(`/mood-tracker-page?month=${entry}&year=${2024}`)
                 }}>
                 {monthNames[entry-1]} 2024
                 </button>
