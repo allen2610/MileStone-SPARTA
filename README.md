@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# InnerEcho Website
 
-First, run the development server:
+## Description
+InnerEcho adalah website kesehatan mental yang ditujukan untuk mahasiswa. Website ini menyediakan berbagai fitur seperti mood assesment, panduan meditasi, jurnal pribadi, dan motivasi harian. Website ini dibuat dengan tujuan untuk membantu mahasiswa mengelola kesehatan mental mereka selama menjalani kehidupan akademik, maupun non akademik.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Teknologi
+Bahasa    : JavaScript
+Framework : Next.js
+Tools     : TailwindCSS, Prisma, Figma, MongoDB
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Struktur Program
+- (auth)
+  - login
+  - register
+- (menus)
+  - journalling
+  - homepage after Login
+  - meditation
+  - mood-tracker
+  - profile
+- HomePage
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Cara Menjalankan Program
+Jalankan perintah berikut pada code editor:
+- git clone 'https://github.com/allen2610/MileStone-SPARTA.git'
+- npm install
+- npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Langkah-langkah menjalankan aplikasi:
+- register akun pada tombol 'mulai disini'
+- login dengan tombol 'login' pada homepage
+- kunjungi profile dengan menekan tombol profil pada bagian kanan atas
+- kunjungi homepage dengan menekan tombol home pada navbar di sebelah kiri website
+- kunjungi meditation dengan menekan tombol home pada navbar di sebelah kiri website
+- kunjungi journalling dengan menekan tombol home pada navbar di sebelah kiri website
+- kunjungi mood-tracker dengan menekan tombol home pada navbar di sebelah kiri website
 
-## Learn More
+## Anggota:
+- |Noeriza Aqila W|PM|
+- |Timothy Marvine|UI/UX|
+- |Jessica Allen|FE|
+- |David Bakti L.|BE|
+- |Naufarrel Zhafif|FE|
+- |Brian A. Hadian|FE|
+- |M. Arya Putra|FE|
+- |Derrick Amadeus B.|Data Science|
+- |Samantha L.|Data Science|
+- |Adhimas Aryo Bimo|Data Science|
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Referensi Belajar
+- https://tailwindcss.com/docs/
+- https://nextjs.org/docs
+- https://www.prisma.io/docs
+- https://www.mongodb.com/docs/
