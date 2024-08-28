@@ -15,7 +15,7 @@ const Navbar = () => {
         width={200}
         alt="Image"
       />
-      <Link href="/" className='flex items-center p-2'>
+      <Link href="/home-login-page" className='flex items-center p-2'>
         <Image
           src={Home}
           alt="Image"
