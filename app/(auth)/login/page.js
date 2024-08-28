@@ -2,7 +2,7 @@ import React from 'react'
 import LoginForm from '@/components/LoginForm'
 import Link from 'next/link'
 import Image from 'next/image'
-import Logo from '@/public/Logo.svg'
+import Logo from '@/public/logo1.svg'
 
 const page = () => {
   return (

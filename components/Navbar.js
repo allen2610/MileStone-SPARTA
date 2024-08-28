@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Logo from '@/public/Logo.svg'
+import Logo from '@/public/logo1.svg'
 import Home from '@/public/home.svg'
 import Mood from '@/public/mood.svg'
 import Meditation from '@/public/meditation.svg'
