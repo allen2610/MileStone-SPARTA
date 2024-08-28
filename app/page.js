@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Logo from "@/public/Logo.svg"
+import Logo from "@/public/logo1.svg"
 import PP from "@/public/profile.svg"
 import image1 from "@/public/Control your mind (3) 1.svg"
 import image2 from "@/public/Control your mind (3) 2.svg"
@@ -22,31 +22,29 @@ export default function Home() {
         </div>
 
         <div className="items-center">
-          <div className="m-8 border-2 rounded-lg bg-white border-zinc-950 text-black py-2 px-8">
-          <Link href={"/(auth)/login"} className='w-screen'>
-            Login
-          </Link>
+        <Link href={"/login"} className='w-screen text-bold'>
+          <div className="m-8 border-2 rounded-lg bg-[#F8F4EB] font-semibold py-2 px-8">
+              Login          
           </div>
+        </Link>
         </div>
-
-
       </div>
 
       <div className="relative h-2/5 w-screen m-0 flex justify-around">
-        <div className="absolute bg-gray-200 opacity-35 inset-0 -z-10"></div> {/*for transparent backgorund*/}
+        <div className="absolute bg-white/50 opacity-35 inset-0 -z-10"></div> {/*for transparent backgorund*/}
 
         <div className="items-center py-20">
-          <div className="relative justify-center text-black font-serif text-2xl">
+          <div className="relative justify-center font-bold text-black font-serif text-2xl">
             An inner echo is not just a reflection,
           </div>
 
-          <div className="relative justify-center text-black font-serif text-3xl">
+          <div className="relative justify-center font-bold text-black font-serif text-3xl">
             it is a reminder of who you truly are
           </div>
 
           <div className="items-center inline-flex">
-            <div className="m-8 border-2 rounded-lg bg-white border-zinc-950 text-black py-2 px-8">
-              <Link href={"/(auth)/login"} className='w-screen'>
+            <div className="m-8 border-2 rounded-lg bg-[#BAD5F0] font-semibold text-black py-2 px-8">
+              <Link href="/register" className='w-screen'>
                 Mulai disini
               </Link>
             </div>
