@@ -43,6 +43,7 @@ Langkah-langkah menjalankan aplikasi:
 - |David Bakti L.|BE|
 - |Naufarrel Zhafif|FE|
 - |Brian A. Hadian|FE|
+- |M. Luqman Hakim|FE|
 - |M. Arya Putra|FE|
 - |Derrick Amadeus B.|Data Science|
 - |Samantha L.|Data Science|
