@@ -23,7 +23,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'> Home </div>
       </Link>
-      <Link href="/Meditation" className='flex items-center p-2'>
+      <Link href="/meditation-page" className='flex items-center p-2'>
         <Image
           src={Meditation}
           alt="Image"
@@ -31,7 +31,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'>  Meditation </div>
       </Link>
-      <Link href="/Journalling" className='flex items-center p-2'>
+      <Link href="/journalling" className='flex items-center p-2'>
         <Image
           src={Journal}
           alt="Image"
@@ -39,7 +39,7 @@ const Navbar = () => {
         />
         <div className='p-3 font-bold text-xl'> Journalling </div>
       </Link>
-      <Link href="/mood-Assessment" className='flex items-center p-2'>
+      <Link href="/mood-tracker-page" className='flex items-center p-2'>
         <Image
           src={Mood}
           alt="Image"

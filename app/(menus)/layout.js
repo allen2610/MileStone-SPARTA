@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import Navbar from '@/components/Navbar'
 import Image from "next/image";
 import Background from "@/public/background.svg"
@@ -17,11 +17,11 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="relative ">
           <div className="w-full h-full flex justify-between">
-            {/* <Image
+            <Image
               src={Background}
               className="absolute top-0 left-0 w-full h-full -z-20 object-cover"
               alt="background"/>
-            <Navbar/>  */}
+            <Navbar/> 
            {children}
           </div>
         </div>

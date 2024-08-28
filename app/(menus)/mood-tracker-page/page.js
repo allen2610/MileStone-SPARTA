@@ -119,12 +119,12 @@ const MoodAssessment = async ({ searchParams }) => {
           <thead>
             <tr className='flex justify-between'>
               <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1'>Senin</th>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1 bg-yellow-300'>Selasa</th>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1 bg-red-300'>Rabu</th>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1 bg-indigo-300'>Kamis</th>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1 bg-teal-300'>Jumat</th>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1 bg-purple-300'>Sabtu</th>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1 bg-blue-300'>Minggu</th>
+              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-yellow-300'>Selasa</th>
+              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-red-300'>Rabu</th>
+              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-indigo-300'>Kamis</th>
+              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-teal-300'>Jumat</th>
+              <th className='text-xl font-bold w-[100px] text-center py-1 m-1 bg-purple-300'>Sabtu</th>
+              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-blue-300'>Minggu</th>
             </tr>
           </thead>
           <tbody>
@@ -174,6 +174,4 @@ const MoodAssessment = async ({ searchParams }) => {
     </div>
   )
 }
-
-
 export default MoodAssessment

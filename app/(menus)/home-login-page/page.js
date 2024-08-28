@@ -11,7 +11,7 @@ import Bubble from '@/public/text-bubble.svg'
 
 const page = () => {
   return (
-    <div className="bg-white opacity- w-full rounded-xl m-3 p-[60px]">
+    <div className="bg-white/50 opacity- w-full rounded-xl m-3 p-[60px]">
       <Link href="/profile" className=' w-screen '>
         <Image 
         src={PP}
