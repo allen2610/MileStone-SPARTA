@@ -2,14 +2,20 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import PP from '@/public/profile.svg'
-import Bahagia from '@/public/bahagia.svg'
-import Senang from '@/public/senang.svg'
-import Biasa from '@/public/biasa.svg'
-import Sedih from '@/public/sedih.svg'
-import Marah from '@/public/marah.svg'
 import Bubble from '@/public/text-bubble.svg'
+import { checkDaily, getSession } from '@/actions/actions'
+import { redirect } from 'next/navigation'
+import MoodForm from '@/components/MoodForm'
+import { revalidatePath } from 'next/cache'
 
-const page = () => {
+const page = async () => {
+  const session = await getSession();
+    if(!session){
+        redirect("/")
+    }
+    const name = session.user.name;
+    const [avail, mood] = await checkDaily(session.user);
+    revalidatePath("/home-login-page");
   return (
     <div className="bg-white/50 opacity- w-full rounded-xl m-3 p-[60px]">
       <Link href="/profile-page" className=' w-screen '>
@@ -20,52 +26,13 @@ const page = () => {
         className='absolute right-[60px] top-10'
         />
       </Link>
-      <h1 className='text-5xl font-extrabold mb-[40px]'>Hai, Andi!</h1>
-      <p className='text-xl font-bold'>Bagaimana perasaanmu hari ini?</p>
-      <div className='m-5 px-10 flex justify-between flex-wrap'>
-        <button className='bg-pink-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
-          <Image
-            src={Marah}
-            width={90}
-            alt ="image"
-          />
-          <p>Marah</p>
-        </button>
-        <button className='bg-yellow-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
-          <Image
-            src={Sedih}
-            width={90}
-            alt ="image"
-          />
-          <p>Sedih</p>
-        </button>
-        <button className='bg-orange-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl  shadow-md'>
-          <Image
-            src={Biasa}
-            width={90}
-            alt ="image"
-          />
-          <p>Biasa Saja</p>
-        </button>
-        <button className='bg-green-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
-          <Image
-            src={Senang}
-            width={90}
-            alt ="image"
-          />
-          <p>Senang</p>
-        </button>
-        <button className='bg-purple-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
-          <Image
-            src={Bahagia}
-            width={90}
-            alt ="image"
-          />
-          <p>Bahagia</p>
-        </button>
-      </div>
-      <div className='mt-5'>
-        <div className='flex justify-center w-full md:absolute md:right-[150px] md:top-[350px]'>
+      <h1 className='text-5xl font-extrabold mb-[40px]'>Hai, {name}!</h1>
+      <MoodForm 
+        avail = {avail}
+        mood = {mood}
+      />
+      <div className='pt-10'>
+        <div className='flex justify-center w-full md:absolute md:right-[150px] md:top-[450px]'>
           <Image
             src={Bubble}
             alt="Image"
