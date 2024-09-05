@@ -1,6 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import prisma from "@/lib/db";
+import { Truculenta } from "next/font/google";
 
 export async function createUser(formData){
     try{
@@ -28,8 +29,31 @@ export async function inputMood(formData){
           },
       })
   }catch(error){
-      console.log(error)
+      console.error(error)
   }
+}
+
+export async function checkDaily(user){
+    try{
+        const today = new Date();
+        const latestMood = await prisma.moods.findMany({
+            where:{
+                userId: user.id,
+                AND: [
+                    { createdAt: { gte: new Date(today.setHours(0, 0, 0, 0))}},
+                    { createdAt: { lte: new Date(today.setHours(23, 59, 59, 999))}}
+                ]
+            },
+        })
+        if(!latestMood.length){
+            return [true, null];
+        }
+        else{
+            return [false, latestMood];
+        }
+    }catch(err){
+        console.error(err)
+    }
 }
 
 export async function inputJournal(formData){
