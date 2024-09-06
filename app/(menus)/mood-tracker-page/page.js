@@ -83,12 +83,10 @@ const MoodAssessment = async ({ searchParams }) => {
   ];
   const moodImages = ['', Marah, Sedih, Biasa, Senang, Bahagia];
   let weeklyMood = [null, null, null, null, null, null, null];
-  let weeklyDate = [null, null, null, null, null, null, null];
   moods.forEach((mood, index, array) => {
     const date = new Date(mood.createdAt);
     const weekday = date.getDay();
     weeklyMood[weekday] = mood.mood;
-    weeklyDate[weekday] = date.getDate();
     moodCounter[mood.mood-1].count+=1;
     // console.log(moodCounter)
     if (date.getDay() == 0 || index === array.length - 1){
@@ -100,6 +98,7 @@ const MoodAssessment = async ({ searchParams }) => {
       }
     }
   })
+  
   const expression = ['Marah', 'Sedih', 'Biasa saja', 'Senang', 'Bahagia'];
   const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
   return (
@@ -130,7 +129,7 @@ const MoodAssessment = async ({ searchParams }) => {
           <tbody>
             {moodsByWeek.map((entry) => (
               <tr key={entry.id} className='flex'>
-                <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[1] ? <Image src={moodImages[entry.moods[1]]} alt="mood" width={50} height={50} /> : " "}</td>
+                <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[1] ? <Image src={moodImages[entry.moods[1]]} alt="mood" width={50} height={50} /> : " "} {}</td>
                 <td className='bg-yellow-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[2] ? <Image src={moodImages[entry.moods[2]]} alt="mood" width={50} height={50} /> : " "}</td>
                 <td className='bg-red-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[3] ? <Image src={moodImages[entry.moods[3]]} alt="mood" width={50} height={50} /> : " "}</td> 
                 <td className='bg-indigo-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[4] ? <Image src={moodImages[entry.moods[4]]} alt="mood" width={50} height={50} /> : " "}</td>

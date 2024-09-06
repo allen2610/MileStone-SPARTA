@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import prisma from "@/lib/db";
 import { Truculenta } from "next/font/google";
+import { revalidatePath } from "next/cache";
 
 export async function createUser(formData){
     try{
@@ -19,21 +20,34 @@ export async function createUser(formData){
     }
 }
 
-export async function inputMood(formData){
+export async function inputMood(formData, moodId){
   try{
       const session = await getSession();
-      await prisma.moods.create({
-          data: {
-              mood : parseInt(formData.get("option")),
-              userId : session.user.id
-          },
-      })
+      if(!moodId){
+        await prisma.moods.create({
+            data: {
+                mood : parseInt(formData.get("option")),
+                userId : session.user.id
+            },
+        })
+      }
+      else{
+        await prisma.moods.update({
+            where: {
+                id: moodId,
+            },
+            data: {
+                mood: parseInt(formData.get("option")),
+            },
+        })
+      }
+      revalidatePath("/home-login-page");
   }catch(error){
       console.error(error)
   }
 }
 
-export async function checkDaily(user){
+export async function checkDailyMood(user){
     try{
         const today = new Date();
         const latestMood = await prisma.moods.findMany({
@@ -46,28 +60,64 @@ export async function checkDaily(user){
             },
         })
         if(!latestMood.length){
-            return [true, null];
+            return [null, null];
         }
         else{
-            return [false, latestMood];
+            return [latestMood[0].id, latestMood[0].mood];
         }
     }catch(err){
         console.error(err)
     }
 }
 
-export async function inputJournal(formData){
+export async function checkDailyJournal(user){
+    try{
+        const today = new Date();
+        const latestJournal = await prisma.journal.findMany({
+            where:{
+                userId: user.id,
+                AND: [
+                    { createdAt: { gte: new Date(today.setHours(0, 0, 0, 0))}},
+                    { createdAt: { lte: new Date(today.setHours(23, 59, 59, 999))}}
+                ]
+            },
+        })
+        if(!latestJournal.length){
+            return [null, null];
+        }
+        else{
+            return [latestJournal[0].id, latestJournal[0].content];
+        }
+    }catch(err){
+        console.error(err)
+    }
+}
+
+export async function inputJournal(formData, journalId){
   try{
-      const session = await getSession();
-      await prisma.journal.create({
-          data: {
-              content : formData.get("journal"),
-              userId : session.user.id
-          },
-      })
-  }catch(error){
-      console.log(error)
-  }
+    const session = await getSession();
+    if(!journalId){
+        await prisma.journal.create({
+            data: {
+                content : formData.get("journal"),
+                userId : session.user.id
+            },
+        })
+    }
+    else{
+        await prisma.journal.update({
+            where: {
+                id: journalId,
+            },
+            data: {
+                content: formData.get("journal")
+            },
+        })
+    }
+    revalidatePath("/journalling-page");
+    }catch(error){
+        console.log(error)
+    }
 }
 
 export async function login(formData) {

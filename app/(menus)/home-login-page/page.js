@@ -3,19 +3,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import PP from '@/public/profile.svg'
 import Bubble from '@/public/text-bubble.svg'
-import { checkDaily, getSession } from '@/actions/actions'
+import { checkDailyMood, getSession } from '@/actions/actions'
 import { redirect } from 'next/navigation'
 import MoodForm from '@/components/MoodForm'
-import { revalidatePath } from 'next/cache'
 
 const page = async () => {
   const session = await getSession();
     if(!session){
         redirect("/")
     }
-    const name = session.user.name;
-    const [avail, mood] = await checkDaily(session.user);
-    revalidatePath("/home-login-page");
+  const name = session.user.name;
+  const [moodId, mood] = await checkDailyMood(session.user);
+  
   return (
     <div className="bg-white/50 opacity- w-full rounded-xl m-3 p-[60px]">
       <Link href="/profile-page" className=' w-screen '>
@@ -28,7 +27,7 @@ const page = async () => {
       </Link>
       <h1 className='text-5xl font-extrabold mb-[40px]'>Hai, {name}!</h1>
       <MoodForm 
-        avail = {avail}
+        moodId = {moodId}
         mood = {mood}
       />
       <div className='pt-10'>
