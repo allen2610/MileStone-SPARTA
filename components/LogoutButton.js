@@ -13,7 +13,7 @@ const LogoutButton = () => {
     <button onClick={() => {
         logout();
         redirect('/')
-    }} className={'rounded-full w-[11rem] p-3 mt-10 text-2xl text-center ' + mitrNormal.className} style={{backgroundColor: "#C8E7EC"}}> Logout </button>
+    }} className={'rounded-full px-5 py-2 mt-3 text-lg border-[1px] border-black text-center ' + mitrNormal.className} style={{backgroundColor: "#FCE3DF"}}> Logout </button>
   )
 }
 
