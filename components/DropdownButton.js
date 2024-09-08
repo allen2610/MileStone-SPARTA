@@ -15,7 +15,7 @@ const DropdownButton = () => {
   return (
     <div className="dropdown bg-[#D2EBF0] rounded-3xl px-5 py-1 absolute right-20 '">
       <button onClick={toggleDropdown} className="dropdown-button">
-        ▼ Dropdown 
+        ▼ Bulan
       </button>
       {isOpen && (
         <ul className="dropdown-menu">
