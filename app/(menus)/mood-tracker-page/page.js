@@ -98,9 +98,20 @@ const MoodAssessment = async ({ searchParams }) => {
       }
     }
   })
-  
   const expression = ['Marah', 'Sedih', 'Biasa saja', 'Senang', 'Bahagia'];
   const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+  let moodMode = '';
+  let highestCount = 0;
+  let totalCount = 0;
+  moodCounter.forEach((elmt) => {
+    if(highestCount < elmt.count){
+      highestCount = elmt.count;
+      moodMode = expression[elmt.id];
+    }
+    totalCount += elmt.count
+  })
+  const isStable = (highestCount > totalCount/2) ? 'stabil' : 'fluktuatif'
+  const comment = `Pada bulan ${monthNames[currentMonth-1]}, Anda mengalami mood yang ${isStable}. Anda menuliskan perasaan Anda ${moodMode} sebanyak ${highestCount} kali.`
   return (
     <div className='bg-white/50 w-full h-full rounded-xl m-3 p-[60px] '>
       <Link href="/profile-page" className=' w-screen '>
@@ -159,8 +170,7 @@ const MoodAssessment = async ({ searchParams }) => {
             width={500}
             className='flex ml-[380px]'
           />  
-          <p className='absolute text-lg w-[400px] right-[250px] bottom-[170px] font-bold text-white'>Pada bulan {monthNames[currentMonth-1]}, Anda mengalami mood 
-          yang fluktuatif. Namun, stabil karena Anda menuliskan perasaan Anda ”biasa saja” sebanyak 9 kali.</p>    
+          <p className='absolute text-lg w-[400px] right-[250px] bottom-[170px] font-bold text-white'>{comment}</p>    
         </div>
         <Image
           src={Maskot}
