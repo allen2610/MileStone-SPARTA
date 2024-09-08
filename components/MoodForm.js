@@ -8,6 +8,7 @@ import Biasa from '@/public/biasa.svg'
 import Sedih from '@/public/sedih.svg'
 import Marah from '@/public/marah.svg'
 import Image from "next/image";
+import MoodButton from "./MoodButton";
 
 const MoodForm = (
     {moodId, mood}
@@ -71,7 +72,7 @@ const MoodForm = (
                         <p>Bahagia</p>
                     </label>
                 </div>
-                <button type="submit" className="bg-blue-100 py-2 mx-auto w-full">Submit</button>
+                <MoodButton />
             </form>
         </>
     )
