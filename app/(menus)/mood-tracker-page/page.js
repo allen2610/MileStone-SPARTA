@@ -106,7 +106,7 @@ const MoodAssessment = async ({ searchParams }) => {
   moodCounter.forEach((elmt) => {
     if(highestCount < elmt.count){
       highestCount = elmt.count;
-      moodMode = expression[elmt.id];
+      moodMode = expression[elmt.id-1];
     }
     totalCount += elmt.count
   })
