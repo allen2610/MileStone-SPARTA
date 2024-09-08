@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import PP from '@/public/profile.svg'
 import Bubble from '@/public/text-bubble.svg'
-import { checkDailyMood, getSession } from '@/actions/actions'
+import { checkDailyMood, getMotivation, getSession } from '@/actions/actions'
 import { redirect } from 'next/navigation'
 import MoodForm from '@/components/MoodForm'
 
@@ -14,7 +14,7 @@ const page = async () => {
     }
   const name = session.user.name;
   const [moodId, mood] = await checkDailyMood(session.user);
-  
+  await getMotivation(session.user);
   return (
     <div className="bg-white/50 opacity- w-full rounded-xl m-3 p-[60px]">
       <Link href="/profile-page" className=' w-screen '>
@@ -41,7 +41,7 @@ const page = async () => {
           <div className='text-3xl md:absolute md:top-[30px] text-white font-semibold'>Daily Motivation</div>
         </div>
         <div className='flex flex-col justify-center items-center bg-[#7A3B2E] md:ml-[250px] md:w-[700px] text-white rounded-xl'>
-          <div className='bg-[#7A3B2E] h-[300px]'> </div>
+          <div className='bg-[#7A3B2E] h-[300px] px-4 flex items-center justify-center text-2xl'>{session.user.motiv}</div>
           <div className='bg-white w-full h-[2px]'></div>
           <div className='bg-[#7A3B2E] mt-1 text-lg p-2'>Noted!</div>
         </div>

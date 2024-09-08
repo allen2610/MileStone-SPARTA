@@ -21,6 +21,8 @@ model User {
   name        String 
   dateOfBirth DateTime 
   gender      Int
+  motivTime   DateTime?
+  motiv       String?
 }
 
 model Journal {
@@ -35,4 +37,9 @@ model Moods {
   createdAt DateTime @default(now())
   mood Int
   userId  String
+}
+
+model DailyMotivation {
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  quote String
 }

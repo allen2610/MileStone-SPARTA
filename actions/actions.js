@@ -20,6 +20,44 @@ export async function createUser(formData){
     }
 }
 
+export async function getMotivation(user){
+    try{
+        const today = new Date().setHours(0, 0, 0, 0);
+        if(!user.motivTime){
+            const quote = await prisma.dailyMotivation.findRandom();
+            await prisma.user.update({
+                where: {
+                    id: user.id,
+                },
+                data: {
+                    motivTime: new Date(today),
+                    motiv: quote.quote
+                },
+            })
+            user.motivTime = new Date(today);
+            user.motiv = quote.quote;
+        }
+        else{
+            if(user.motivTime < today){    
+                const quote = await prisma.dailyMotivation.findRandom();
+                await prisma.user.update({
+                    where: {
+                        id: user.id,
+                    },
+                    data: {
+                        motivTime: new Date(today),
+                        motiv: quote.quote
+                    },
+                })
+                user.motivTime = new Date(today);
+                user.motiv = quote.quote;
+            }
+        }
+    }catch(err){
+        console.error(err);
+    }
+}
+
 export async function inputMood(formData, moodId){
   try{
       const session = await getSession();
@@ -122,19 +160,24 @@ export async function inputJournal(formData, journalId){
 
 export async function login(formData) {
     // Verify credentials && get the user
-  
-    const user = await prisma.user.findUnique({
-        where:{
-            email: formData.get("email")
+    try{
+        const user = await prisma.user.findUnique({
+            where:{
+                email: formData.get("email")
+            }
+        });
+        if (!user || user.password !== formData.get("password")) {
+            throw new Error("Invalid email or password");
         }
-    });
-  
-    // Create the session
-    const expires = new Date(Date.now() + 10 * 60 * 1000);
-    const session = JSON.stringify({ user, expires });
-  
+        // Create the session
+        const expires = new Date(Date.now() + 10 * 60 * 1000);
+        const session = JSON.stringify({ user, expires });
+        cookies().set("session", session, { expires, httpOnly: true });
+    }catch(err){
+        console.error(err);
+    }
     // Save the session in a cookie
-    cookies().set("session", session, { expires, httpOnly: true });
+    
   }
   
 export async function logout() {
