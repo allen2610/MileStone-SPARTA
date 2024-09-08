@@ -75,7 +75,7 @@ const MoodForm = (
                         <p>Bahagia</p>
                     </label>
                 </div>
-                <button type="submit" className="bg-green-400 py-2 mx-auto flex justify-center rounded-full px-5 font-semibold italic text-white ">Submit</button>
+                <MoodButton />
             </form>
         </>
     )

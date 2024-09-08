@@ -4,7 +4,7 @@ import { useFormStatus } from 'react-dom'
 function MoodButton() {
     const { pending } = useFormStatus();
   return (
-    <button className="bg-blue-100 py-2 mx-auto w-full" disabled = {pending} >
+    <button type="submit" className="bg-green-400 py-2 mx-auto flex justify-center rounded-full px-5 font-semibold italic text-white ">
         {pending ? 'Submitting...' : 'Submit'}
     </button>
   )
