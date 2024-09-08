@@ -26,7 +26,9 @@ Jalankan perintah berikut pada code editor:
 - git clone 'https://github.com/allen2610/MileStone-SPARTA.git'
 - npm install
 - npm run dev
-
+atau
+- klik link deployment pada About, di bagian kanan atas repo ini
+  
 Langkah-langkah menjalankan aplikasi:
 - register akun pada tombol 'mulai disini'
 - login dengan tombol 'login' pada homepage
