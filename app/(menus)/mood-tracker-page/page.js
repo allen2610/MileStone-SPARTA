@@ -91,7 +91,7 @@ const MoodAssessment = async ({ searchParams }) => {
     moodCounter[mood.mood-1].count+=1;
     // console.log(moodCounter)
     if (date.getDay() == 1 || index === array.length - 1){
-      const weekToUpdate = moodsByWeek.find((week) => week.id == 1 + (date.getDate()/7|0));
+      const weekToUpdate = moodsByWeek.find((week) => week.id === 1 + (date.getDate()/7|0));
       // If the object exists, update its moods array
       if (weekToUpdate) {
         weekToUpdate.moods = weeklyMood;

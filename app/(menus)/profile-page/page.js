@@ -39,6 +39,7 @@ const page = async () => {
         <div className={mitrLight.className}> : {user.bio} </div>
       </div>
       <Link href='/home-login-page' className={'rounded-full px-5 py-2 border-[1px] border-black mt-10 text-lg text-center ' + mitrNormal.className} style={{backgroundColor: "#C8E7EC"}}> Kembali </Link>
+      <LogoutButton />
     </div>
   );
 }

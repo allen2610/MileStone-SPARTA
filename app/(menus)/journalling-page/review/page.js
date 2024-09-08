@@ -20,6 +20,9 @@ const JournalReview = async ({ searchParams }) => {
       })
 
     const entries = await prisma.journal.findMany({
+        where:{
+            userId: session.user.id
+        },
         skip: Number(currentCount)*entryPerPage,
         take: entryPerPage,
         orderBy:{
