@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Mitr } from 'next/font/google';
 import { getSession } from '@/actions/actions';
 import { redirect } from 'next/navigation';
+import LogoutButton from '@/components/LogoutButton';
 
 const mitrLight = Mitr({ subsets: ["latin"], weight: '200'});
 const mitrNormal = Mitr({ subsets: ["latin"], weight: '400'});

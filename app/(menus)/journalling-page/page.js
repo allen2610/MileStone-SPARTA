@@ -24,7 +24,7 @@ const page = async () => {
         className='absolute right-[60px] top-10'
         />
       </Link>
-      <h1 className='text-5xl font-extrabold '>Hai, Andi!</h1>
+      <h1 className='text-5xl font-extrabold '>Hai, {name}!</h1>
       <h2 className='text-3xl m-2 font-bold mb-5 mt-5'>Apa yang kamu mau ceritakan hari ini?</h2>
       <JournalForm 
           journalId = {journalId}
