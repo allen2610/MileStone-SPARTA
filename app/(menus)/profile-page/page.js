@@ -25,7 +25,7 @@ const page = async () => {
         height={300}
         alt='user profile picture'
       />
-      <div className='grid grid-cols-2 text-2xl gap-x-10'>
+      <div className='grid grid-cols-2 text-lg gap-x-10'>
         <div className={mitrBold.className}> Nama </div>
         <div className={mitrLight.className}> : {user.name} </div>
         <div className={mitrBold.className}> Tanggal Lahir </div>
@@ -37,7 +37,7 @@ const page = async () => {
         <div className={mitrBold.className}> Bio </div>
         <div className={mitrLight.className}> : {user.bio} </div>
       </div>
-      <Link href='/' className={'rounded-full w-[11rem] p-3 mt-10 text-2xl text-center ' + mitrNormal.className} style={{backgroundColor: "#C8E7EC"}}> Kembali </Link>
+      <Link href='/home-login-page' className={'rounded-full px-5 py-2 border-[1px] border-black mt-10 text-lg text-center ' + mitrNormal.className} style={{backgroundColor: "#C8E7EC"}}> Kembali </Link>
     </div>
   );
 }

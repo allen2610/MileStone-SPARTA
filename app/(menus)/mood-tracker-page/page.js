@@ -122,19 +122,19 @@ const MoodAssessment = async ({ searchParams }) => {
         className='absolute right-[60px] top-10'
         />
       </Link>
-      <h1 className='text-5xl font-extrabold '>Mood Echoers selama sebulan</h1>
+      <h1 className='text-5xl font-extrabold '>Mood Echoers Selama Sebulan</h1>
       <DropdownButton></DropdownButton>
       <div className="flex items-start justify-center mt-10">
         <table>
           <thead>
             <tr className='flex justify-between'>
-              <th className='text-xl font-bold bg-pink-300 w-[100px] text-center py-1 m-1'>Senin</th>
-              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-yellow-300'>Selasa</th>
-              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-red-300'>Rabu</th>
-              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-indigo-300'>Kamis</th>
-              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-teal-300'>Jumat</th>
-              <th className='text-xl font-bold w-[100px] text-center py-1 m-1 bg-purple-300'>Sabtu</th>
-              <th className='text-xl font-bold  w-[100px] text-center py-1 m-1 bg-blue-300'>Minggu</th>
+              <th className='text-lg font-bold bg-pink-300 w-[100px] text-center py-1 m-1'>Senin</th>
+              <th className='text-lg font-bold  w-[100px] text-center py-1 m-1 bg-yellow-300'>Selasa</th>
+              <th className='text-lg font-bold  w-[100px] text-center py-1 m-1 bg-red-300'>Rabu</th>
+              <th className='text-lg font-bold  w-[100px] text-center py-1 m-1 bg-indigo-300'>Kamis</th>
+              <th className='text-lg font-bold  w-[100px] text-center py-1 m-1 bg-teal-300'>Jumat</th>
+              <th className='text-lg font-bold w-[100px] text-center py-1 m-1 bg-purple-300'>Sabtu</th>
+              <th className='text-lg font-bold  w-[100px] text-center py-1 m-1 bg-blue-300'>Minggu</th>
             </tr>
           </thead>
           <tbody>
@@ -170,7 +170,7 @@ const MoodAssessment = async ({ searchParams }) => {
             width={500}
             className='flex ml-[380px]'
           />  
-          <p className='absolute text-lg w-[400px] right-[250px] bottom-[170px] font-bold text-white'>{comment}</p>    
+          <p className='absolute text-lg w-[400px] right-[260px] bottom-[190px] font-bold text-white'>{comment}</p>    
         </div>
         <Image
           src={Maskot}

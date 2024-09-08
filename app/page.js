@@ -23,7 +23,7 @@ export default function Home() {
 
         <div className="items-center">
         <Link href={"/login"} className='w-screen text-bold'>
-          <div className="m-8 border-2 rounded-lg bg-[#F8F4EB] font-semibold py-2 px-8">
+          <div className="m-8 rounded-lg bg-[#F8F4EB] font-semibold py-2 px-8">
               Login          
           </div>
         </Link>
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
 
           <div className="items-center inline-flex">
-            <div className="m-8 border-2 rounded-lg bg-[#BAD5F0] font-semibold text-black py-2 px-8">
+            <div className="m-8 rounded-lg bg-[#BAD5F0] font-semibold text-black py-2 px-8">
               <Link href="/register" className='w-screen'>
                 Mulai disini
               </Link>

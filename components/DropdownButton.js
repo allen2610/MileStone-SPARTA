@@ -13,7 +13,7 @@ const DropdownButton = () => {
   const months = [1,2,3,4,5,6,7,8,9,10,11,12]
   const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
   return (
-    <div className="dropdown bg-[#D2EBF0] rounded-3xl px-5 py-1 absolute right-20 '">
+    <div className="dropdown bg-[#BAD5F0] rounded-3xl px-5 py-1 absolute right-20 '">
       <button onClick={toggleDropdown} className="dropdown-button">
         ▼ Dropdown 
       </button>

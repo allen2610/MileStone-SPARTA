@@ -31,7 +31,7 @@ const page = async () => {
           journalContent = {journalContent}
       />
       <Link href="/journalling-page/review" className='flex justify-center mt-3'>
-        <button className='bg-red-400 p-2 px-4 rounded-3xl text-white w-[100px] flex items-center justify-center font-bold '>Review</button>
+        <button className='bg-red-400 p-2 px-4 rounded-3xl italic text-white w-[100px] flex items-center justify-center font-bold '>Review</button>
       </Link>
     </div>
   )

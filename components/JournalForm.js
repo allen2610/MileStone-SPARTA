@@ -14,8 +14,8 @@ const JournalForm = (
       }}
     >
       <div className="flex flex-col items-center">
-        <textarea name="journal" rows="20" className="resize w-full">{journalContent}</textarea> <br/>
-        <button type="submit" className="bg-green-400 p-2 px-4 rounded-3xl text-white w-[100px] flex items-center justify-center font-bold ">Submit</button>
+        <textarea name="journal" rows="20" className="resize w-full rounded-xl py-3 px-5">{journalContent}</textarea> <br/>
+        <button type="submit" className="bg-green-400 p-2 px-4 rounded-3xl italic text-white w-[100px] flex items-center justify-center font-bold ">Submit</button>
       </div>
 
     </form>

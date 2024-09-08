@@ -25,7 +25,7 @@ const MoodForm = (
             }}
             >
                 <div className='m-5 px-10 flex justify-between flex-wrap'>
-                    <label className='bg-pink-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
+                    <label className='bg-pink-200 rounded-3xl px-6 pt-3 mx-2 pb-2 mb-3 text-sm font-semibold shadow-md text-center'>
                         <input type="radio" name="option" value="1" checked={selectedMood === 1} onChange={handleChange} />
                         <Image
                             src={Marah}
@@ -34,34 +34,37 @@ const MoodForm = (
                         />
                         <p>Marah</p>
                     </label>
-                    <label className='bg-yellow-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
+                    <label className='bg-yellow-200 rounded-3xl px-6 pt-3 mx-2 pb-2 mb-3 text-sm font-semibold shadow-md text-center  flex flex-col  justify-centeritems-center'>
                         <input type="radio" name="option" value="2" checked={selectedMood === 2} onChange={handleChange} />
                         <Image
                             src={Sedih}
                             width={90}
                             alt ="image"
+                            className="my-2"
                             />
                         <p>Sedih</p>
                     </label>
-                    <label className='bg-orange-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl  shadow-md'>
+                    <label className='bg-orange-200 rounded-3xl px-6 pt-3 mx-2 pb-2 mb-3 text-sm font-semibold shadow-md text-center  flex flex-col  justify-centeritems-center'>
                         <input type="radio" name="option" value="3" checked={selectedMood === 3} onChange={handleChange} />
                         <Image
                             src={Biasa}
                             width={90}
                             alt ="image"
+                            className="my-1"
                             />
                             <p>Biasa Saja</p>
                     </label>
-                    <label className='bg-green-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
+                    <label className='bg-green-200 rounded-3xl px-6 pt-3 mx-2 pb-2 mb-3 text-sm font-semibold shadow-md text-center  flex flex-col  justify-centeritems-center'>
                         <input type="radio" name="option" value="4" checked={selectedMood === 4} onChange={handleChange} />
                         <Image
                             src={Senang}
                             width={90}
                             alt ="image"
+                            className="my-2"
                         />
                         <p>Senang</p>
                     </label>
-                    <label className='bg-purple-200 rounded-3xl px-6 mx-2 pb-2 mb-3 text-xl shadow-md'>
+                    <label className='bg-purple-200 rounded-3xl px-6 pt-3 mx-2 pb-2 mb-3 text-sm font-semibold shadow-md text-center  flex flex-col  justify-centeritems-center'>
                         <input type="radio" name="option" value="5" checked={selectedMood === 5} onChange={handleChange} />
                         <Image
                             src={Bahagia}
@@ -71,7 +74,7 @@ const MoodForm = (
                         <p>Bahagia</p>
                     </label>
                 </div>
-                <button type="submit" className="bg-blue-100 py-2 mx-auto w-full">Submit</button>
+                <button type="submit" className="bg-green-400 py-2 mx-auto flex justify-center rounded-full px-5 font-semibold italic text-white ">Submit</button>
             </form>
         </>
     )

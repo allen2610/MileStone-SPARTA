@@ -13,14 +13,14 @@ const PaginationControls = (
 
   const page = searchParams.get('page') ?? '0'
   return (
-    <div className='flex gap-2'>
+    <div className='flex gap-2 text-center items-center justify-center font-semibold text-sm'>
       <button
-        className='bg-blue-500 text-white p-1'
+        className='bg-[#F8F4EB] text-black py-1 px-3 rounded-full italic border-[1px] border-black'
         disabled={!hasPrevPage}
         onClick={() => {
             router.push(`/journalling-page/review?page=${Number(page) - 1}`)
         }}>
-        prev page
+        Prev
       </button>
 
       <div>
@@ -28,12 +28,12 @@ const PaginationControls = (
       </div>
 
       <button
-        className='bg-blue-500 text-white p-1'
+        className='bg-[#F8F4EB] text-black py-1 px-3 rounded-full italic border-[1px] border-black'
         disabled={!hasNextPage}
         onClick={() => {
             router.push(`/journalling-page/review?page=${Number(page) + 1}`)  
         }}>
-        next page
+        Next
       </button>
     </div>
   )
