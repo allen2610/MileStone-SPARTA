@@ -8,6 +8,7 @@ import Biasa from '@/public/biasa.svg'
 import Sedih from '@/public/sedih.svg'
 import Marah from '@/public/marah.svg'
 import Image from "next/image";
+import MoodButton from "./MoodButton";
 
 const MoodForm = (
     {moodId, mood}
