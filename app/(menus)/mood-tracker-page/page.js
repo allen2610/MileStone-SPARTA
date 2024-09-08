@@ -27,6 +27,7 @@ const MoodAssessment = async ({ searchParams }) => {
   const endOfMonth =  new Date(currentYear, currentMonth, 0, 23, 59, 59, 999);
   const moods = await prisma.moods.findMany({
     where: {
+      userId: session.user.id,
       createdAt: {
         gte: startOfMonth,
         lt: endOfMonth,
@@ -82,7 +83,7 @@ const MoodAssessment = async ({ searchParams }) => {
     }
   ];
   const moodImages = ['', Marah, Sedih, Biasa, Senang, Bahagia];
-  let weeklyMood = [null, null, null, null, null, null, null, null];
+  let weeklyMood = [null, null, null, null, null, null, null];
   moods.forEach((mood, index, array) => {
     const date = new Date(mood.createdAt);
     const weekday = date.getDay();
@@ -90,11 +91,11 @@ const MoodAssessment = async ({ searchParams }) => {
     moodCounter[mood.mood-1].count+=1;
     // console.log(moodCounter)
     if (date.getDay() == 1 || index === array.length - 1){
-      const weekToUpdate = moodsByWeek.find((week) => week.id === 1 + (date.getDate()/7|0));
+      const weekToUpdate = moodsByWeek.find((week) => week.id == 1 + (date.getDate()/7|0));
       // If the object exists, update its moods array
       if (weekToUpdate) {
         weekToUpdate.moods = weeklyMood;
-        weeklyMood = [null, null, null, null, null, null, null, null];
+        weeklyMood = [null, null, null, null, null, null, null];
       }
     }
   })
