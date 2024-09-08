@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Mitr } from 'next/font/google';
 import { getSession } from '@/actions/actions';
 import { redirect } from 'next/navigation';
+import LogoutButton from '@/components/LogoutButton';
 
 const mitrLight = Mitr({ subsets: ["latin"], weight: '200'});
 const mitrNormal = Mitr({ subsets: ["latin"], weight: '400'});
@@ -37,7 +38,8 @@ const page = async () => {
         <div className={mitrBold.className}> Bio </div>
         <div className={mitrLight.className}> : {user.bio} </div>
       </div>
-      <Link href='/' className={'rounded-full w-[11rem] p-3 mt-10 text-2xl text-center ' + mitrNormal.className} style={{backgroundColor: "#C8E7EC"}}> Kembali </Link>
+      <Link href='/home-login-page' className={'rounded-full w-[11rem] p-3 mt-10 text-2xl text-center ' + mitrNormal.className} style={{backgroundColor: "#C8E7EC"}}> Kembali </Link>
+      <LogoutButton/>
     </div>
   );
 }
