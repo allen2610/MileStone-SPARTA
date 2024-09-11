@@ -67,9 +67,14 @@ const MoodAssessment = async ({ searchParams }) => {
   // console.log(moodArray);
   const moodsByWeek = [
     {
-      id: 1, 
+      id: 0, 
       moods: [null, null, null, null, null, null, null],
       date: [null, null, null, null, null, null, null]
+    },
+    {
+      id: 1, 
+      moods: [null, null, null, null, null, null, null],
+      date: [null, null, null, null, null, null, null] 
     },
     {
       id: 2, 
@@ -98,12 +103,13 @@ const MoodAssessment = async ({ searchParams }) => {
   const endDay = endOfMonth.getDate();
   let dayOfWeek = startOfMonth.getDay();
   let dayOfMonth = 1;
+  let weekId = 0;
   console.log('a')
   while(dayOfMonth <= endDay){
     weeklyMood[dayOfWeek] = moodArray[dayOfMonth];
     weeklyDate[dayOfWeek] = dayOfMonth;
     if(dayOfWeek == 0 || dayOfMonth == endDay){
-      const weekToUpdate = moodsByWeek.find((week) => week.id === 1 + (dayOfMonth/7|0));
+      const weekToUpdate = moodsByWeek.find((week) => week.id === weekId);
       // If the object exists, update its moods array
       if (weekToUpdate) {
         weekToUpdate.moods = weeklyMood;
@@ -111,6 +117,7 @@ const MoodAssessment = async ({ searchParams }) => {
         weeklyMood = new Array(7);
         weeklyDate = new Array(7);
       }
+      weekId+=1;
     }
     dayOfWeek = (dayOfWeek + 1) % 7;
     dayOfMonth+=1;
