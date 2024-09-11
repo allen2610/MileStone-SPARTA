@@ -22,7 +22,6 @@ const MoodAssessment = async ({ searchParams }) => {
   const currentDate = new Date();
   const currentMonth = Number(searchParams['month']) || currentDate.getMonth() + 1;
   const currentYear = Number(searchParams['year']) || currentDate.getYear() + 1900;
-  
   const startOfMonth =  new Date(currentYear, currentMonth - 1, 1);
   const endOfMonth =  new Date(currentYear, currentMonth, 0, 23, 59, 59, 999);
   const moods = await prisma.moods.findMany({
@@ -34,32 +33,10 @@ const MoodAssessment = async ({ searchParams }) => {
       },
     },
     orderBy:{
-      createdAt: 'desc',
+      createdAt: 'asc',
     }
   });
-
-  const moodsByWeek = [
-    {
-      id: 1, 
-      moods: [null, null, null, null, null, null, null] 
-    },
-    {
-      id: 2, 
-      moods: [null, null, null, null, null, null, null] 
-    },
-    {
-      id: 3, 
-      moods: [null, null, null, null, null, null, null] 
-    },
-    {
-      id: 4, 
-      moods: [null, null, null, null, null, null, null] 
-    },
-    {
-      id: 5, 
-      moods: [null, null, null, null, null, null, null] 
-    },
-  ]
+  let moodArray = new Array(32);
   const moodCounter = [
     {
       id: 1,
@@ -82,23 +59,63 @@ const MoodAssessment = async ({ searchParams }) => {
       count: 0
     }
   ];
+  moods.forEach((elmt) => {
+    const dateOfMonth = elmt.createdAt.getDate();
+    moodArray[dateOfMonth] = elmt.mood;
+    moodCounter[elmt.mood-1].count+=1;
+  })
+  // console.log(moodArray);
+  const moodsByWeek = [
+    {
+      id: 1, 
+      moods: [null, null, null, null, null, null, null],
+      date: [null, null, null, null, null, null, null]
+    },
+    {
+      id: 2, 
+      moods: [null, null, null, null, null, null, null],
+      date: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 3, 
+      moods: [null, null, null, null, null, null, null],
+      date: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 4, 
+      moods: [null, null, null, null, null, null, null],
+      date: [null, null, null, null, null, null, null] 
+    },
+    {
+      id: 5, 
+      moods: [null, null, null, null, null, null, null],
+      date: [null, null, null, null, null, null, null] 
+    },
+  ]
   const moodImages = ['', Marah, Sedih, Biasa, Senang, Bahagia];
-  let weeklyMood = [null, null, null, null, null, null, null];
-  moods.forEach((mood, index, array) => {
-    const date = new Date(mood.createdAt);
-    const weekday = date.getDay();
-    weeklyMood[weekday] = mood.mood;
-    moodCounter[mood.mood-1].count+=1;
-    // console.log(moodCounter)
-    if (date.getDay() == 1 || index === array.length - 1){
-      const weekToUpdate = moodsByWeek.find((week) => week.id === 1 + (date.getDate()/7|0));
+  let weeklyMood = new Array(7);
+  let weeklyDate = new Array(7);
+  const endDay = endOfMonth.getDate();
+  let dayOfWeek = startOfMonth.getDay();
+  let dayOfMonth = 1;
+  console.log('a')
+  while(dayOfMonth <= endDay){
+    weeklyMood[dayOfWeek] = moodArray[dayOfMonth];
+    weeklyDate[dayOfWeek] = dayOfMonth;
+    if(dayOfWeek == 0 || dayOfMonth == endDay){
+      const weekToUpdate = moodsByWeek.find((week) => week.id === 1 + (dayOfMonth/7|0));
       // If the object exists, update its moods array
       if (weekToUpdate) {
         weekToUpdate.moods = weeklyMood;
-        weeklyMood = [null, null, null, null, null, null, null];
+        weekToUpdate.date = weeklyDate;
+        weeklyMood = new Array(7);
+        weeklyDate = new Array(7);
       }
     }
-  })
+    dayOfWeek = (dayOfWeek + 1) % 7;
+    dayOfMonth+=1;
+  }
+  // console.log(moodsByWeek);
   const expression = ['Marah', 'Sedih', 'Biasa saja', 'Senang', 'Bahagia'];
   const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
   let moodMode = '';
@@ -141,13 +158,27 @@ const MoodAssessment = async ({ searchParams }) => {
           <tbody>
             {moodsByWeek.map((entry) => (
               <tr key={entry.id} className='flex'>
-                <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[1] ? <Image src={moodImages[entry.moods[1]]} alt="mood" width={50} height={50} /> : " "} {}</td>
-                <td className='bg-yellow-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[2] ? <Image src={moodImages[entry.moods[2]]} alt="mood" width={50} height={50} /> : " "}</td>
-                <td className='bg-red-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[3] ? <Image src={moodImages[entry.moods[3]]} alt="mood" width={50} height={50} /> : " "}</td> 
-                <td className='bg-indigo-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[4] ? <Image src={moodImages[entry.moods[4]]} alt="mood" width={50} height={50} /> : " "}</td>
-                <td className='bg-teal-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[5] ? <Image src={moodImages[entry.moods[5]]} alt="mood" width={50} height={50} /> : " "}</td>
-                <td className='bg-purple-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[6] ? <Image src={moodImages[entry.moods[6]]} alt="mood" width={50} height={50} /> : " "}</td>
-                <td className='bg-blue-200 w-[100px] text-center py-1 m-1 flex justify-center h-[60px]'>{entry.moods[0] ? <Image src={moodImages[entry.moods[0]]} alt="mood" width={50} height={50} /> : " "}</td>
+                <td className='bg-pink-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[1]} 
+                  {entry.moods[1] ? <Image src={moodImages[entry.moods[1]]} alt="mood" width={50} height={50} /> : " "}
+                  </td>
+                <td className='bg-yellow-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[2]} 
+                  {entry.moods[2] ? <Image src={moodImages[entry.moods[2]]} alt="mood" width={50} height={50} /> : " "}
+                  </td>
+                <td className='bg-red-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[3]} 
+                  {entry.moods[3] ? <Image src={moodImages[entry.moods[3]]} alt="mood" width={50} height={50} /> : " "}
+                  </td> 
+                <td className='bg-indigo-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[4]} 
+                  {entry.moods[4] ? <Image src={moodImages[entry.moods[4]]} alt="mood" width={50} height={50} /> : " "}
+                  </td>
+                <td className='bg-teal-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[5]} 
+                  {entry.moods[5] ? <Image src={moodImages[entry.moods[5]]} alt="mood" width={50} height={50} /> : " "}
+                  </td>
+                <td className='bg-purple-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[6]} 
+                  {entry.moods[6] ? <Image src={moodImages[entry.moods[6]]} alt="mood" width={50} height={50} /> : " "}
+                  </td>
+                <td className='bg-blue-200 w-[100px] text-center py-1 m-1 flex justify-left px-4 gap-1 text-sm text-black text-opacity-70 h-[60px]'> {entry.date[0]} 
+                  {entry.moods[0] ? <Image src={moodImages[entry.moods[0]]} alt="mood" width={50} height={50} /> : " "}
+                  </td>
               </tr>
             ))}
           </tbody>
