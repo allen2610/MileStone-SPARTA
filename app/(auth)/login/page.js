@@ -12,7 +12,7 @@ const page = () => {
         <h1 className='text-2xl mb-5 font-extrabold'>User Login</h1>
         <LoginForm/>
         <div className='text-sm flex flex-col items-start mr-[150px]'>
-          <Link href="/">
+          <Link href="/forget-password">
             <button >Forgot Password</button>
           </Link>
           <Link href='/register'>

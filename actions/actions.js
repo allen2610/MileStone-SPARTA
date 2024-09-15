@@ -3,18 +3,58 @@ import { cookies } from "next/headers";
 import prisma from "@/lib/db";
 import { Truculenta } from "next/font/google";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/dist/server/api-utils";
 
 export async function createUser(formData){
     try{
-        await prisma.user.create({
-            data: {
-                email: formData.get("email"),
-                password: formData.get("password"),
-                name: formData.get("name"),
-                dateOfBirth: new Date(formData.get("dateOfBirth")),
-                gender: parseInt(formData.get("gender"))
-            },
-        })
+        const existingUser = await prisma.user.findUnique({
+            where:{
+                email: formData.get("email")
+            }
+        });
+        if(!existingUser){
+            const today = new Date().setHours(0, 0, 0, 0);
+            const quote = await prisma.dailyMotivation.findRandom();
+            await prisma.user.create({
+                data: {
+                    email: formData.get("email"),
+                    password: formData.get("password"),
+                    name: formData.get("name"),
+                    dateOfBirth: new Date(formData.get("dateOfBirth")),
+                    gender: parseInt(formData.get("gender")),
+                    motivTime: new Date(today),
+                    motiv: quote.quote
+                },
+            })
+        }
+        else{
+            throw new Error("Invalid email");
+        }
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export async function updatePassword(formData){
+    try{
+        const existingUser = await prisma.user.findUnique({
+            where:{
+                email: formData.get("email")
+            }
+        });
+        if(existingUser.name == formData.get("name")){
+            await prisma.user.update({
+                where:{
+                    email: formData.get("email")
+                }, 
+                data: {
+                    password: formData.get("password"),
+                },
+            })
+        }
+        else{
+            throw new Error("Wrong input!");
+        }
     }catch(error){
         console.log(error)
     }
@@ -23,7 +63,7 @@ export async function createUser(formData){
 export async function getMotivation(user){
     try{
         const today = new Date().setHours(0, 0, 0, 0);
-        if(!user.motivTime){
+        if(user.motivTime < today){    
             const quote = await prisma.dailyMotivation.findRandom();
             await prisma.user.update({
                 where: {
@@ -36,22 +76,6 @@ export async function getMotivation(user){
             })
             user.motivTime = new Date(today);
             user.motiv = quote.quote;
-        }
-        else{
-            if(user.motivTime < today){    
-                const quote = await prisma.dailyMotivation.findRandom();
-                await prisma.user.update({
-                    where: {
-                        id: user.id,
-                    },
-                    data: {
-                        motivTime: new Date(today),
-                        motiv: quote.quote
-                    },
-                })
-                user.motivTime = new Date(today);
-                user.motiv = quote.quote;
-            }
         }
     }catch(err){
         console.error(err);
